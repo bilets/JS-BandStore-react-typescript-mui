@@ -5,7 +5,9 @@ https://bilets.github.io/JS-BandStore-react-typescript-mui/
 For reference, here’s the link to the older version of the project:
 👉 https://bilets.github.io/course-task-react/ (Old Version)
 
+👉 Book Online Store (Old Version)
+
 The project was completed according to the requirements outlined in the following document:
-👉 Project Requirements
+👉 [Project Requirements](https://github.com/bilets/JS-BandStore-react-typescript-mui/blob/master/course-project-requirements.pdf)
 
 # React + TypeScript+ Material UI + Vite
