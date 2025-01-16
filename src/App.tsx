@@ -27,7 +27,7 @@ export default function App() {
         return {
           ...cartItem,
           count: cartItem.count + item.count,
-          total: (Number(cartItem.total) + Number(item.total)).toFixed(2),
+          total: cartItem.total + item.total,
         };
       }
       return cartItem;

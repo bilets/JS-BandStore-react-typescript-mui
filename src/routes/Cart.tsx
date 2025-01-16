@@ -1,7 +1,6 @@
 import { useContext } from 'react';
 import CartContext, { CartItem } from '../context/CartContext.ts';
 import cartImg from '../images/cart.svg';
-import * as React from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -31,9 +30,8 @@ export default function Cart({ resetCart }: CartProps) {
     );
   }
 
-  const total = cart
-    .reduce((sum, item: CartItem) => sum + Number.parseFloat(item.total), 0)
-    .toFixed(2);
+  const totalAll = cart.reduce((sum, item: CartItem) => sum + item.total, 0);
+    
 
   return (
     <Box
@@ -81,7 +79,7 @@ export default function Cart({ resetCart }: CartProps) {
               </TableCell>
               <TableCell align="right">
                 <Typography variant="subtitle1" fontWeight="bold">
-                  {total}
+                  {totalAll.toFixed(2)}
                 </Typography>
               </TableCell>
             </TableRow>

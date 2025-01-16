@@ -3,7 +3,7 @@ import { Box, TextField, Typography, Button } from '@mui/material';
 import Grid from '@mui/material/Grid2';
 
 interface FormProps {
-  addToCart: (item: { title: string; count: number; total: string }) => void;
+  addToCart: (item: { title: string; count: number; total: number }) => void;
   title: string;
   price: number;
   bookInCartCountHandler: (count: number) => void;
@@ -26,7 +26,7 @@ export default function Form({
     }
   };
 
-  const total = (price * count).toFixed(2);
+  const total = price * count;
 
   const handleClick = () => {
     addToCart({ title, count, total });
@@ -52,7 +52,7 @@ export default function Form({
         </Grid>
         <Grid item xs={12} sm={4}>
           <Typography variant="body1">Total price, $</Typography>
-          <Typography variant="body2">{total}</Typography>
+          <Typography variant="body2">{total.toFixed(2)}</Typography>
         </Grid>
         <Grid item xs={12}>
           <Button
