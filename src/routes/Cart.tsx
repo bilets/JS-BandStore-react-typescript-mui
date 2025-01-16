@@ -68,7 +68,7 @@ export default function Cart({ resetCart }: CartProps) {
               <TableRow key={book.title}>
                 <TableCell>{book.title}</TableCell>
                 <TableCell align="right">{book.count}</TableCell>
-                <TableCell align="right">{book.total}</TableCell>
+                <TableCell align="right">{book.total.toFixed(2)}</TableCell>
               </TableRow>
             ))}
             <TableRow>

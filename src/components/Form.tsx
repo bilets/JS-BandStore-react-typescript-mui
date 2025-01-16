@@ -1,6 +1,5 @@
 import { useState, ChangeEvent } from 'react';
 import { Box, TextField, Typography, Button } from '@mui/material';
-import Grid from '@mui/material/Grid2';
 
 interface FormProps {
   addToCart: (item: { title: string; count: number; total: number }) => void;
@@ -19,29 +18,39 @@ export default function Form({
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const value = parseInt(e.target.value, 10);
-    if (value >= 1 && value <= 42) {
-      setCount(value);
+    if (!isNaN(value)) {
+      setCount(Math.max(1, Math.min(value, 42)));
     } else {
       setCount(1);
     }
   };
 
-  const total = price * count;
-
   const handleClick = () => {
+    const total = price * count;
     addToCart({ title, count, total });
-    setCount(1);
     bookInCartCountHandler(count);
+    setCount(1); // Скидання після додавання
   };
 
   return (
     <Box sx={{ mt: 2 }}>
-      <Grid container spacing={2} alignItems="center">
-        <Grid item xs={12} sm={4}>
-          <Typography variant="body1">Price, $</Typography>
+      <Box
+        sx={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          gap: 2,
+          justifyContent: 'space-between',
+          alignItems: 'center',
+        }}
+      >
+        <Box sx={{ flex: '1 1 30%' }}>
+          <Typography variant="body1" gutterBottom>
+            Price, $
+          </Typography>
           <Typography variant="body2">{price.toFixed(2)}</Typography>
-        </Grid>
-        <Grid item xs={12} sm={4}>
+        </Box>
+
+        <Box sx={{ flex: '1 1 30%' }}>
           <TextField
             label="Count"
             type="number"
@@ -49,22 +58,26 @@ export default function Form({
             onChange={handleChange}
             fullWidth
           />
-        </Grid>
-        <Grid item xs={12} sm={4}>
-          <Typography variant="body1">Total price, $</Typography>
-          <Typography variant="body2">{total.toFixed(2)}</Typography>
-        </Grid>
-        <Grid item xs={12}>
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={handleClick}
-            fullWidth
-          >
-            Add to cart
-          </Button>
-        </Grid>
-      </Grid>
+        </Box>
+
+        <Box sx={{ flex: '1 1 30%' }}>
+          <Typography variant="body1" gutterBottom>
+            Total price, $
+          </Typography>
+          <Typography variant="body2">{(price * count).toFixed(2)}</Typography>
+        </Box>
+      </Box>
+
+      <Box sx={{ mt: 2 }}>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={handleClick}
+          fullWidth
+        >
+          Add to cart
+        </Button>
+      </Box>
     </Box>
   );
 }
